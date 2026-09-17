@@ -286,9 +286,11 @@ p{margin:0 0 1em}
 .header{position:fixed;top:var(--top-banner-height, 0px);left:0;right:0;z-index:50;height:var(--header);transition:top .3s var(--ease),background-color .35s var(--ease),border-color .35s var(--ease);border-bottom:1px solid transparent}
 .header.is-solid{background:rgba(0,0,0,.92);border-color:var(--line);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
 .header .wrap{height:100%;display:flex;align-items:center;gap:32px}
-.brand{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.brand{display:flex;align-items:center;text-decoration:none;flex-shrink:0;position:relative;overflow:hidden;border-radius:4px}
 .brand img{height:54px;width:auto;max-width:240px;object-fit:contain;transition:transform .25s var(--ease),filter .25s var(--ease)}
 .brand:hover img{transform:scale(1.035);filter:drop-shadow(0 2px 10px rgba(255,255,255,.25))}
+.brand::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.24) 50%,transparent 75%);transform:translateX(-100%);animation:brandSheen 5.5s ease-in-out infinite;pointer-events:none}
+@keyframes brandSheen{0%,55%{transform:translateX(-100%)}80%,100%{transform:translateX(100%)}}
 .brand .brand-text{display:none;font-stretch:var(--wide);font-weight:760;text-transform:uppercase;letter-spacing:.02em}
 .brand.no-logo img{display:none}.brand.no-logo .brand-text{display:block}
 .nav{margin-left:auto}
@@ -348,25 +350,24 @@ p{margin:0 0 1em}
   position:relative;
   display:block;
   background:linear-gradient(
-    115deg,
+    112deg,
     #ffffff 0%,
-    #ffffff 26%,
-    rgba(255,255,255,.62) 36%,
+    #ffffff 20%,
+    rgba(255,255,255,.42) 33%,
     #ffffff 44%,
-    #ffffff 48%,
-    rgba(245,215,135,.95) 50%,
-    #ffffff 52%,
-    rgba(255,255,255,.62) 60%,
-    #ffffff 68%,
+    rgba(255,242,190,1) 50%,
+    #ffffff 56%,
+    rgba(255,255,255,.42) 67%,
+    #ffffff 80%,
     #ffffff 100%
   );
-  background-size:260% 100%;
+  background-size:280% 100%;
   background-position:100% 0;
   -webkit-background-clip:text;
   background-clip:text;
   color:transparent;
   -webkit-text-fill-color:transparent;
-  animation:sheen 6.8s cubic-bezier(.25,1,.5,1) infinite;
+  animation:sheen 4.5s cubic-bezier(.22,1,.36,1) infinite;
   will-change:background-position,transform;
   -webkit-transform:translateZ(0);
   transform:translateZ(0);
@@ -374,13 +375,13 @@ p{margin:0 0 1em}
   backface-visibility:hidden;
   transition:filter .3s var(--ease);
 }
-.sheen .hero-title span:nth-child(1){animation-delay:.3s}
-.sheen .hero-title span:nth-child(2){animation-delay:.55s}
-.sheen .hero-title span:nth-child(3){animation-delay:.8s}
-.sheen .hero-title:hover span{filter:drop-shadow(0 0 14px rgba(255,255,255,.3))}
+.sheen .hero-title span:nth-child(1){animation-delay:.15s}
+.sheen .hero-title span:nth-child(2){animation-delay:.38s}
+.sheen .hero-title span:nth-child(3){animation-delay:.62s}
+.sheen .hero-title:hover span{filter:drop-shadow(0 0 16px rgba(255,255,255,.4))}
 @keyframes sheen{
   0%{background-position:100% 0}
-  38%{background-position:0% 0}
+  46%{background-position:0% 0}
   100%{background-position:0% 0}
 }
 
@@ -674,7 +675,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#b3261e}
   
   /* En-tête & Menu */
   .header .wrap{gap:12px;padding-inline:16px}
-  .brand img{height:38px;max-width:150px}
+  .brand img{height:44px;max-width:175px}
   .burger{width:42px;height:42px}
   .burger span{left:10px;right:10px}
   .menu{padding:20px 16px 120px}
@@ -684,6 +685,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#b3261e}
   .hero .wrap{padding-top:calc(var(--header) + var(--top-banner-height, 0px) + 20px);padding-bottom:28px}
   .hero-brand{font-size:.72rem;letter-spacing:.2em;margin-bottom:12px}
   .hero-title{font-size:clamp(2.1rem, 11vw, 3.2rem);line-height:.92}
+  .sheen .hero-title span{background-size:290% 100%;-webkit-text-fill-color:transparent}
   .hero-sub{font-size:.76rem;letter-spacing:.14em;margin-top:14px}
   .hero-lede{font-size:.92rem;line-height:1.5;margin-top:10px}
   .hero-actions{flex-direction:column;width:100%;gap:10px;margin-top:20px}
@@ -771,12 +773,10 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#b3261e}
 .ba-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold);animation:dotPulse 1.8s infinite}
 @keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
 
-/* ---------- Mouvement réduit ---------- */
+/* ---------- Mouvement réduit (Préservation de l'identité signature & reflet glossy) ---------- */
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none!important;transition:none!important}
   .js .reveal{clip-path:none}
-  .sheen .hero-title span{color:var(--white);background:none;-webkit-text-fill-color:var(--white)}
 }
 
 </style>
@@ -1743,7 +1743,7 @@ const CONFIG = {
 document.documentElement.classList.add("js");
 const $ = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
-const reduceMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const reduceMotion = false; // Maintien actif du reflet glossy et du balayage automatique sur iPhone / mode economie
 if (new URLSearchParams(location.search).has("contenu")) document.documentElement.classList.add("show-todo");
 
 /* ---------- Suivi des conversions (reprend le paramétrage existant) ---------- */
