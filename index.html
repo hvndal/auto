@@ -22,8 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&display=swap">
-<link rel="preload" as="image" href="assets/img/IG_4.3.2025_67edd627e52b67.70968778.jpeg" media="(max-width: 760px)">
-<link rel="preload" as="image" href="assets/img/2026-01-18_14-46-03_1768765573.jpg" media="(min-width: 761px)">
+<link rel="preload" as="image" href="assets/img/2026-01-18_14-46-03_1768765573.jpg">
 
 <script type="application/ld+json">
 {
@@ -324,6 +323,8 @@ p{margin:0 0 1em}
 /* ---------- Hero ---------- */
 .hero{position:relative;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;isolation:isolate;background:var(--black)}
 .hero-media,.hero-media picture,.hero-media img,.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-media img{object-position:center center;-webkit-transform:translateZ(0);transform:translateZ(0)}
+@media (max-width:760px){.hero-media img{object-position:62% center}}
 .hero-media{z-index:-2}
 .hero-media video{opacity:0;transition:opacity 1.2s var(--ease)}
 .hero-media video.is-playing{opacity:1}
@@ -366,7 +367,11 @@ p{margin:0 0 1em}
   color:transparent;
   -webkit-text-fill-color:transparent;
   animation:sheen 6.8s cubic-bezier(.25,1,.5,1) infinite;
-  will-change:background-position;
+  will-change:background-position,transform;
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
   transition:filter .3s var(--ease);
 }
 .sheen .hero-title span:nth-child(1){animation-delay:.3s}
@@ -472,14 +477,14 @@ p{margin:0 0 1em}
 .show-todo .todo-hide{display:none}
 
 /* ---------- Avant / après ---------- */
-.ba{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--steel);user-select:none;touch-action:pan-y;--pos:50%}
-.ba > .ba-layer{position:absolute;inset:0}
-.ba img{width:100%;height:100%;object-fit:cover;pointer-events:none}
-.ba .ba-before{clip-path:inset(0 calc(100% - var(--pos)) 0 0)}
-.ba-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--gold);pointer-events:none}
-.ba-handle{position:absolute;top:50%;left:var(--pos);width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--black);border:2px solid var(--gold);display:grid;place-items:center;pointer-events:none;transition:transform .2s var(--ease)}
+.ba{position:relative;overflow:hidden;aspect-ratio:16/9;background:var(--steel);user-select:none;-webkit-user-select:none;touch-action:pan-y;--pos:50%;-webkit-transform:translateZ(0);transform:translateZ(0);-webkit-backface-visibility:hidden;backface-visibility:hidden}
+.ba > .ba-layer{position:absolute;inset:0;-webkit-transform:translateZ(0);transform:translateZ(0)}
+.ba img{width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-select:none;user-select:none}
+.ba .ba-before{clip-path:inset(0 calc(100% - var(--pos)) 0 0);-webkit-clip-path:inset(0 calc(100% - var(--pos)) 0 0);will-change:clip-path;transform:translateZ(0);-webkit-transform:translateZ(0)}
+.ba-line{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;margin-left:-1px;background:var(--gold);pointer-events:none;will-change:left;transform:translateZ(0);-webkit-transform:translateZ(0)}
+.ba-handle{position:absolute;top:50%;left:var(--pos);width:56px;height:56px;margin:-28px 0 0 -28px;border-radius:50%;background:var(--black);border:2px solid var(--gold);display:grid;place-items:center;pointer-events:none;transition:transform .2s var(--ease);will-change:left,transform;transform:translateZ(0);-webkit-transform:translateZ(0)}
 .ba-handle svg{width:26px;height:26px}
-.ba:active .ba-handle{transform:scale(1.08)}
+.ba:active .ba-handle{transform:scale(1.08) translateZ(0);-webkit-transform:scale(1.08) translateZ(0)}
 .ba input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;margin:0;cursor:ew-resize;touch-action:pan-y}
 .ba input[type=range]:focus-visible ~ .ba-handle{outline:2px solid var(--white);outline-offset:4px}
 .ba-tag{position:absolute;top:16px;padding:6px 12px;background:rgba(0,0,0,.72);font-size:.78rem;font-weight:600;letter-spacing:.06em;pointer-events:none}
@@ -858,8 +863,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#b3261e}
 <section class="hero sheen" id="accueil" aria-labelledby="titre-principal">
   <div class="hero-media" aria-hidden="true">
     <picture>
-      <source media="(min-width: 761px)" srcset="assets/img/2026-01-18_14-46-03_1768765573.jpg">
-      <img src="assets/img/IG_4.3.2025_67edd627e52b67.70968778.jpeg" alt="Auto-Esthetica, esthétique automobile de prestige à Québec" fetchpriority="high" width="1120" height="1400">
+      <img src="assets/img/2026-01-18_14-46-03_1768765573.jpg" alt="Mercedes-Benz SL classique rouge chez Auto-Esthetica, esthétique automobile de prestige à Québec" fetchpriority="high" width="1920" height="1080">
     </picture>
     <!-- VIDÉO DU HERO : déposer hero.mp4 (et idéalement hero.webm) dans /assets/video/.
          Recommandé : 1920×1080, 8 à 15 s en boucle, sans son, < 4 Mo. Tant que le fichier est absent, la photo reste affichée. -->
@@ -1321,12 +1325,26 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#b3261e}
     </div>
 
     <div class="tabs" role="tablist" aria-label="Types de travaux">
-      <button class="tab" role="tab" id="bt-correction" aria-controls="bp-correction" aria-selected="true">Correction de peinture</button>
+      <button class="tab" role="tab" id="bt-classic" aria-controls="bp-classic" aria-selected="true">Restauration classique</button>
+      <button class="tab" role="tab" id="bt-correction" aria-controls="bp-correction" aria-selected="false" tabindex="-1">Correction de peinture</button>
       <button class="tab" role="tab" id="bt-ceramique" aria-controls="bp-ceramique" aria-selected="false" tabindex="-1">Céramique</button>
       <button class="tab" role="tab" id="bt-ppf" aria-controls="bp-ppf" aria-selected="false" tabindex="-1">PPF</button>
       <button class="tab" role="tab" id="bt-interieur" aria-controls="bp-interieur" aria-selected="false" tabindex="-1">Intérieur</button>
     </div>
-    <div class="ba-panel" role="tabpanel" id="bp-correction" aria-labelledby="bt-correction">
+    <div class="ba-panel" role="tabpanel" id="bp-classic" aria-labelledby="bt-classic">
+      <div class="ba">
+        <div class="ba-layer ba-after"><img src="assets/img/ba-classic-after.jpg" alt="Mercedes-Benz SL classique rouge après décontamination, polissage de finition et éclat miroir" width="1920" height="1080" fetchpriority="high"></div>
+        <div class="ba-layer ba-before"><img src="assets/img/ba-classic-before.jpg" alt="Mercedes-Benz SL classique rouge avant traitement avec oxydation de vernis et micro-rayures" width="1920" height="1080" loading="eager"></div>
+        <span class="ba-tag ba-tag--before">Avant</span><span class="ba-tag ba-tag--after">Après</span>
+        <span class="ba-line"></span>
+        <input type="range" min="0" max="100" value="50" step="1" aria-label="Comparer avant et après : Restauration classique Mercedes-Benz">
+        <span class="ba-handle"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" aria-hidden="true"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6"/></svg></span>
+        <span class="ba-hint">Glissez pour comparer</span>
+        <span class="ba-tag ba-tag--demo">Photo de démonstration</span><span class="ba-tag ba-tag--auto"><span class="ba-dot"></span>Balayage automatique</span>
+      </div>
+      <div class="ba-caption"><span>Restauration classique</span><span>Mercedes-Benz SL Décapotable Rouge — Décontamination minutieuse, correction d’oxydation et vernis haute brillance</span></div>
+    </div>
+    <div class="ba-panel" role="tabpanel" id="bp-correction" aria-labelledby="bt-correction" hidden>
       <div class="ba">
         <div class="ba-layer ba-after"><img src="assets/img/ba-correction-after.jpg" alt="Vernis noir saphir après polissage miroir sans aucune micro-rayure" width="1920" height="1080" loading="lazy"></div>
         <div class="ba-layer ba-before"><img src="assets/img/ba-correction-before.jpg" alt="Vernis noir rayé avec micro-rayures et tourbillons sous lampe d'inspection" width="1920" height="1080" loading="lazy"></div>
@@ -1816,7 +1834,7 @@ const navObserver = new IntersectionObserver(entries => {
 }, { rootMargin: "-45% 0px -50% 0px" });
 sectionsForNav.forEach(s => navObserver.observe(s));
 
-/* ---------- Vidéo du hero (chargée seulement si pertinent) ---------- */
+/* ---------- Vidéo du hero (optimisée iOS Safari & Low Power Mode) ---------- */
 (function heroVideo() {
   const v = $(".js-hero-video");
   if (!v) return;
@@ -1833,7 +1851,18 @@ sectionsForNav.forEach(s => navObserver.observe(s));
   v.addEventListener("error", () => v.remove(), true);
   v.lastElementChild && v.lastElementChild.addEventListener("error", () => v.remove());
   v.load();
-  v.play().catch(() => {});
+  const p = v.play();
+  if (p !== undefined) {
+    p.catch(() => {
+      // Si le mode économie d'énergie iOS (Low Power Mode) bloque la lecture automatique,
+      // déverrouiller la vidéo dès la première interaction utilisateur
+      const unlock = () => {
+        v.play().catch(() => {});
+        ["touchstart", "touchend", "pointerdown", "scroll"].forEach(ev => window.removeEventListener(ev, unlock));
+      };
+      ["touchstart", "touchend", "pointerdown", "scroll"].forEach(ev => window.addEventListener(ev, unlock, { passive: true, once: true }));
+    });
+  }
 })();
 
 /* ---------- Révélation des images ---------- */
@@ -1855,7 +1884,16 @@ function setupTabs(list) {
       t.setAttribute("aria-selected", on);
       t.tabIndex = on ? 0 : -1;
       const panel = document.getElementById(t.getAttribute("aria-controls"));
-      if (panel) panel.hidden = !on;
+      if (panel) {
+        panel.hidden = !on;
+        if (on) {
+          const ba = $(".ba", panel);
+          if (ba) {
+            const range = $("input[type=range]", ba);
+            if (range) ba.style.setProperty("--pos", (range.value || 50) + "%");
+          }
+        }
+      }
     });
   };
   tabs.forEach((t, i) => {
@@ -1880,15 +1918,20 @@ $$("[data-tab]").forEach(a => a.addEventListener("click", () => {
 }));
 
 /* ---------- Avant / après (Balayage automatique & contrôle manuel) ---------- */
-const baContainers = $(".ba");
+const baContainers = $$(".ba");
 let userInteracted = false;
 let userInactiveTimer = null;
 
 // Intersection Observer : n'anime que lorsque la section est visible à l'écran
 let isBaVisible = false;
+let autoSwipeStart = performance.now();
 if ("IntersectionObserver" in window) {
   const baObserver = new IntersectionObserver(entries => {
-    isBaVisible = entries.some(en => en.isIntersecting);
+    const isNowVisible = entries.some(en => en.isIntersecting);
+    if (isNowVisible && !isBaVisible) {
+      autoSwipeStart = performance.now();
+    }
+    isBaVisible = isNowVisible;
   }, { threshold: 0.15 });
   const resultatsSec = $("#resultats");
   if (resultatsSec) baObserver.observe(resultatsSec);
@@ -1896,7 +1939,6 @@ if ("IntersectionObserver" in window) {
   isBaVisible = true;
 }
 
-let autoSwipeStart = performance.now();
 function runAutoSwipe(now) {
   if (!reduceMotion && isBaVisible && !userInteracted) {
     const elapsed = (now - autoSwipeStart) / 1000;
