@@ -16,3 +16,8 @@ Site web vitrine et maquette de démonstration interactive pour **Auto-Esthetica
 - **Section Unité Mobile** : Présentation de la remorque autonome pour services à domicile
 - **Générateur de soumission** : Formulaire multi-étapes avec compression et prévisualisation de photos
 - **100 % Autonome** : Fonctionne hors-ligne sans dépendances externes lourdes
+
+## Déploiement & Hébergement Final
+
+Pour démarrer la version finale, intégrer vos photos réelles et activer l'hébergement dédié haute performance :
+📧 **[sales@mander.com](mailto:sales@mander.com)**
